@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automatizaciones para Natalia Mosquera</title>
     <style>
-        * {
+               * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -20,27 +20,31 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
         
+        /* Header Styles */
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             color: white;
+            padding: 40px 20px;
         }
         
         .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
             font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .header .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             opacity: 0.9;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
         }
         
         .header .stats {
@@ -50,425 +54,652 @@
             display: inline-block;
             backdrop-filter: blur(10px);
             margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
+        /* Flow Section Styles */
+        .flow-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .flow-step {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #10B981, #059669);
+        }
+
+        .flow-step h2 {
+            color: #1F2937;
+            margin-bottom: 15px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+        }
+
+        .flow-step p {
+            color: #6B7280;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cards-container {
+            width: 100%;
+        }
+
+        .arrow {
+            font-size: 3rem;
+            color: rgba(255,255,255,0.8);
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Grid Styles */
         .automations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin: 0;
+            align-items: stretch; /* 🔹 Igualar alturas */
         }
         
+        /* Card Styles */
         .automation-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* 🔹 Flex para igualar distribución */
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            min-height: 500px; /* 🔹 Compactar y uniformar altura */
+        }
+        
+        .automation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .automation-card:hover::before {
+            opacity: 1;
         }
         
         .automation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #10B981;
+        }
+        
+        .automation-card > * {
+            position: relative;
+            z-index: 2;
         }
         
         .automation-card.featured {
             border: 3px solid #10B981;
             background: linear-gradient(145deg, #ECFDF5, #D1FAE5);
-            position: relative;
+            transform: scale(1.05);
         }
         
-        .automation-card.featured::before {
+        .automation-card.featured::after {
+            content: "⭐ DESTACADO";
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #10B981;
+            top: -2px;
+            right: -2px;
+            background: linear-gradient(135deg, #10B981, #059669);
             color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 8px 16px;
+            font-size: 0.75rem;
             font-weight: bold;
+            border-bottom-left-radius: 15px;
+            z-index: 3;
         }
         
+        /* Card Content Styles */
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #F3F4F6;
         }
         
         .card-icon {
-            font-size: 2.5rem;
-            margin-right: 15px;
+            font-size: 3rem;
+            margin-right: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
         
         .card-title {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
             font-weight: 700;
             color: #1F2937;
+            line-height: 1.3;
         }
         
         .card-description {
             color: #6B7280;
             margin-bottom: 20px;
-            font-size: 1rem;
+            font-size: 0.95rem; /* 🔹 Más compacto */
+            line-height: 1.6;
         }
         
         .features-list {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .features-list li {
-            margin-bottom: 8px;
-            padding-left: 25px;
+            margin-bottom: 8px; /* 🔹 Menos espacio */
+            padding-left: 30px;
             position: relative;
+            color: #374151;
+            font-weight: 500;
+            line-height: 1.5;
+            font-size: 0.9rem; /* 🔹 Texto más compacto */
         }
         
         .features-list li::before {
             content: "✅";
             position: absolute;
             left: 0;
+            font-size: 1.2rem;
         }
         
+        /* Price and ROI Styles */
         .price-tag {
-            background: #F3F4F6;
-            padding: 10px 20px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #F8FAFC, #E2E8F0);
+            padding: 10px 15px; /* 🔹 Más compacto */
+            border-radius: 15px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #E2E8F0;
         }
         
         .price {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: #1F2937;
+            margin-bottom: 5px;
         }
         
         .price-subtitle {
             font-size: 0.9rem;
             color: #6B7280;
+            font-weight: 500;
         }
         
         .roi-section {
-            background: rgba(16, 185, 129, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+            padding: 12px; /* 🔹 Más compacto */
+            border-radius: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #10B981;
         }
         
         .roi-title {
             font-weight: bold;
             color: #065F46;
             margin-bottom: 10px;
+            font-size: 1.05rem;
         }
         
         .roi-item {
             font-size: 0.9rem;
             color: #047857;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
         
+        /* Additional Cards Section */
+        .additional-cards {
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* CTA Section */
         .cta-section {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 80px;
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
         
         .cta-button {
             background: linear-gradient(135deg, #10B981, #059669);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 45px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            margin: 10px;
+            margin: 15px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
         
         .secondary-button {
             background: transparent;
             color: #10B981;
             border: 2px solid #10B981;
+            box-shadow: none;
         }
         
         .secondary-button:hover {
             background: #10B981;
             color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .automations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 25px;
+            }
+            
+            .automation-card.featured {
+                transform: none;
+            }
         }
         
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .container {
+                padding: 15px;
             }
             
-            .header .subtitle {
-                font-size: 1rem;
+            .flow-step {
+                padding: 30px 20px;
             }
             
             .automations-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .automation-card {
+                padding: 25px;
+                min-height: auto; /* 🔹 En móviles altura automática */
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .card-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 10px;
             }
             
             .automation-card {
                 padding: 20px;
+            }
+            
+            .cta-section {
+                padding: 30px 20px;
+                margin: 40px 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="header">
             <h1>🚀 Automatizaciones para Natalia Mosquera</h1>
             <p class="subtitle">Soluciones inteligentes para especialistas en Marketing Digital</p>
         </div>
-        
-        <div class="automations-grid">
-            <!-- E-book Lead Capture - FEATURED -->
-            <div class="automation-card featured">
-                <div class="card-header">
-                    <div class="card-icon">📖</div>
-                    <div class="card-title">E-book Lead Capture System</div>
-                </div>
-                <div class="card-description">
-                    Sistema completo de captura y seguimiento automático para tu e-book gratuito. Convierte descargas en clientes potenciales calificados.
-                </div>
-                <ul class="features-list">
-                    <li>Formulario optimizado para conversión</li>
-                    <li>Almacenamiento en Google Sheets + HubSpot</li>
-                    <li>Notificación instantánea en Telegram</li>
-                    <li>Email de bienvenida automático</li>
-                    <li>Follow-up diario a las 8:00 AM</li>
-                    <li>Segmentación automática de leads</li>
-                </ul>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• 0% leads perdidos por olvido</div>
-                    <div class="roi-item">• Respuesta en < 5 minutos</div>
-                    <div class="roi-item">• +40% conversión lead→cliente</div>
-                    <div class="roi-item">• 10-15 horas ahorradas/mes</div>
+
+        <!-- Flow Section -->
+        <div class="flow-section">
+            <!-- Paso 1: Captura de leads -->
+            <div class="flow-step">
+                <h2>1️⃣ Captura de leads (Entrada del embudo)</h2>
+                <p>Atrapa a tus prospectos en el momento exacto en que muestran interés.</p>
+                <div class="cards-container">
+                    <div class="automations-grid">
+                        <!-- E-book Lead Capture - FEATURED -->
+                        <div class="automation-card featured">
+                            <div class="card-header">
+                                <div class="card-icon">📖</div>
+                                <div class="card-title">E-book Lead Capture System</div>
+                            </div>
+                            <div class="card-description">
+                                Sistema completo de captura y seguimiento automático para tu e-book gratuito. Convierte descargas en clientes potenciales calificados.
+                            </div>
+                            <ul class="features-list">
+                                <li>Formulario optimizado para conversión</li>
+                                <li>Almacenamiento en Google Sheets + HubSpot</li>
+                                <li>Notificación instantánea en Telegram</li>
+                                <li>Email de bienvenida automático</li>
+                                <li>Follow-up parametrizable</li>
+                                <li>Segmentación automática de leads</li>
+                            </ul>
+                            <div class="roi-section">
+                                <div class="roi-title">💰 ROI Estimado:</div>
+                                <div class="roi-item">• 0% leads perdidos por olvido</div>
+                                <div class="roi-item">• Respuesta en < 5 minutos</div>
+                                <div class="roi-item">• +40% conversión lead→cliente</div>
+                                <div class="roi-item">• 10-15 horas ahorradas/mes</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Instagram DM Smart Responder -->
+                        <div class="automation-card">
+                            <div class="card-header">
+                                <div class="card-icon">💬</div>
+                                <div class="card-title">Instagram DM Smart Responder</div>
+                            </div>
+                            <div class="card-description">
+                                Automatiza las respuestas a mensajes directos en Instagram y captura leads en el momento exacto en que te contactan. Responde al instante, califica la consulta y deriva a la persona al canal más efectivo (WhatsApp, email, etc.), evitando que pierdas oportunidades por falta de tiempo o disponibilidad.
+                            </div>
+                            <ul class="features-list">
+                                <li>Respuestas automáticas personalizadas</li>
+                                <li>Calificación de consultas</li>
+                                <li>Derivación a WhatsApp/email</li>
+                                <li>Horarios de respuesta configurables</li>
+                                <li>Templates por tipo de consulta</li>
+                                <li>Analytics de conversación</li>
+                            </ul>
+                            <div class="price-tag">
+                                <div class="price-subtitle">Respuestas 24/7</div>
+                            </div>
+                            <div class="roi-section">
+                                <div class="roi-title">💰 ROI Estimado:</div>
+                                <div class="roi-item">• Respuesta inmediata 24/7</div>
+                                <div class="roi-item">• +60% leads capturados</div>
+                                <div class="roi-item">• 5-8 horas ahorradas/día</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Social Media Audit Automation -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">📊</div>
-                    <div class="card-title">Social Media Audit Automation</div>
-                </div>
-                <div class="card-description">
-                    Genera reportes completos de auditoría de redes sociales en minutos. Análisis profesional automatizado para tus clientes.
-                </div>
-                <ul class="features-list">
-                    <li>Análisis automático de engagement rates</li>
-                    <li>Mejores horarios de publicación</li>
-                    <li>Comparativa con competencia</li>
-                    <li>Reporte en PDF profesional</li>
-                    <li>Métricas de crecimiento</li>
-                    <li>Recomendaciones automáticas</li>
-                </ul>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• De 4 horas → 30 minutos por auditoría</div>
-                    <div class="roi-item">• Capacidad para 10x más clientes</div>
-                    <div class="roi-item">• Reportes más precisos y profesionales</div>
+            <div class="arrow">⬇️</div>
+
+            <!-- Paso 2: Nutrición y confianza -->
+            <div class="flow-step">
+                <h2>2️⃣ Nutrición y confianza (Calentando el lead)</h2>
+                <p>Acompaña a tu prospecto y genera confianza hasta que esté listo para comprar.</p>
+                <div class="cards-container">
+                    <div class="automations-grid">
+                        <!-- Email Marketing Automation -->
+                        <div class="automation-card">
+                            <div class="card-header">
+                                <div class="card-icon">📧</div>
+                                <div class="card-title">Email Marketing Automation</div>
+                            </div>
+                            <div class="card-description">
+                                Secuencias de email marketing inteligentes que nutren leads y convierten clientes automáticamente.
+                            </div>
+                            <ul class="features-list">
+                                <li>Secuencias de nurturing automáticas</li>
+                                <li>Segmentación inteligente</li>
+                                <li>A/B testing automático</li>
+                                <li>Personalización dinámica</li>
+                                <li>Métricas avanzadas</li>
+                                <li>Re-engagement campaigns</li>
+                            </ul>
+                            <div class="price-tag">
+                                <div class="price-subtitle">Hasta 10K contactos</div>
+                            </div>
+                            <div class="roi-section">
+                                <div class="roi-title">💰 ROI Estimado:</div>
+                                <div class="roi-item">• +45% conversión email→venta</div>
+                                <div class="roi-item">• Ingresos pasivos recurrentes</div>
+                                <div class="roi-item">• Relación más fuerte con audiencia</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Content Research & Ideas -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">💡</div>
-                    <div class="card-title">Content Research & Ideas Generator</div>
-                </div>
-                <div class="card-description">
-                    Investigación automática de tendencias y generación de ideas de contenido. Nunca más te quedes sin inspiración.
-                </div>
-                <ul class="features-list">
-                    <li>Scraping de tendencias por nicho</li>
-                    <li>Análisis de contenido viral</li>
-                    <li>Banco de hashtags automático</li>
-                    <li>Sugerencias personalizadas</li>
-                    <li>Calendario de contenido inteligente</li>
-                    <li>Alertas de oportunidades</li>
-                </ul>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• 2-3 horas ahorradas diarias en research</div>
-                    <div class="roi-item">• Contenido más relevante y viral</div>
-                    <div class="roi-item">• Consistencia en publicaciones</div>
-                </div>
-            </div>
+            <div class="arrow">⬇️</div>
 
-            <!-- Client Management CRM -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">👥</div>
-                    <div class="card-title">Smart Client Management CRM</div>
-                </div>
-                <div class="card-description">
-                    CRM inteligente que gestiona automáticamente el ciclo completo de tus clientes, desde lead hasta facturación.
-                </div>
-                <ul class="features-list">
-                    <li>Calificación automática de leads</li>
-                    <li>Seguimiento de pipeline de ventas</li>
-                    <li>Recordatorios de follow-up</li>
-                    <li>Historial completo de interacciones</li>
-                    <li>Automatización de propuestas</li>
-                    <li>Dashboard de métricas</li>
-                </ul>
-                <div class="price-tag">
-        
-                    <div class="price-subtitle">Clientes ilimitados</div>
-                </div>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• +25% tasa de cierre de ventas</div>
-                    <div class="roi-item">• 0% clientes olvidados</div>
-                    <div class="roi-item">• Proceso de ventas 3x más rápido</div>
-                </div>
-            </div>
-
-            <!-- Instagram DM Automation -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">💬</div>
-                    <div class="card-title">Instagram DM Smart Responder</div>
-                </div>
-                <div class="card-description">
-                    Respuestas automáticas inteligentes para consultas frecuentes en Instagram. Nunca pierdas un lead por respuesta tardía.
-                </div>
-                <ul class="features-list">
-                    <li>Respuestas automáticas personalizadas</li>
-                    <li>Calificación de consultas</li>
-                    <li>Derivación a WhatsApp/email</li>
-                    <li>Horarios de respuesta configurables</li>
-                    <li>Templates por tipo de consulta</li>
-                    <li>Analytics de conversación</li>
-                </ul>
-                <div class="price-tag">
-                   
-                    <div class="price-subtitle">Respuestas 24/7</div>
-                </div>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• Respuesta inmediata 24/7</div>
-                    <div class="roi-item">• +60% leads capturados</div>
-                    <div class="roi-item">• 5-8 horas ahorradas/día</div>
-                </div>
-            </div>
-
-            <!-- Competitor Monitoring -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">🔍</div>
-                    <div class="card-title">Competitor Intelligence System</div>
-                </div>
-                <div class="card-description">
-                    Monitoreo automático de competencia. Mantente siempre un paso adelante con insights de la industria.
-                </div>
-                <ul class="features-list">
-                    <li>Tracking de posts de competidores</li>
-                    <li>Análisis de engagement comparativo</li>
-                    <li>Alertas de nuevas estrategias</li>
-                    <li>Reporte semanal de insights</li>
-                    <li>Identificación de oportunidades</li>
-                    <li>Benchmarking automático</li>
-                </ul>
-                <div class="price-tag">
-        
-                    <div class="price-subtitle">Hasta 10 competidores</div>
-                </div>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• Estrategias más competitivas</div>
-                    <div class="roi-item">• Identificación temprana de tendencias</div>
-                    <div class="roi-item">• Ventaja competitiva sostenible</div>
-                </div>
-            </div>
-
-            <!-- Email Marketing Automation -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">📧</div>
-                    <div class="card-title">Email Marketing Automation</div>
-                </div>
-                <div class="card-description">
-                    Secuencias de email marketing inteligentes que nutren leads y convierten clientes automáticamente.
-                </div>
-                <ul class="features-list">
-                    <li>Secuencias de nurturing automáticas</li>
-                    <li>Segmentación inteligente</li>
-                    <li>A/B testing automático</li>
-                    <li>Personalización dinámica</li>
-                    <li>Métricas avanzadas</li>
-                    <li>Re-engagement campaigns</li>
-                </ul>
-                <div class="price-tag">
-                    
-                    <div class="price-subtitle">Hasta 10K contactos</div>
-                </div>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• +45% conversión email→venta</div>
-                    <div class="roi-item">• Ingresos pasivos recurrentes</div>
-                    <div class="roi-item">• Relación más fuerte con audiencia</div>
-                </div>
-            </div>
-
-            <!-- Analytics & Reporting -->
-            <div class="automation-card">
-                <div class="card-header">
-                    <div class="card-icon">📈</div>
-                    <div class="card-title">Advanced Analytics Dashboard</div>
-                </div>
-                <div class="card-description">
-                    Dashboard centralizado con métricas clave de todas tus plataformas. Toma decisiones basadas en datos reales.
-                </div>
-                <ul class="features-list">
-                    <li>Métricas unificadas multi-plataforma</li>
-                    <li>Reportes automáticos semanales</li>
-                    <li>Alerts de cambios importantes</li>
-                    <li>ROI tracking automatizado</li>
-                    <li>Predicciones de crecimiento</li>
-                    <li>Visualizaciones interactivas</li>
-                </ul>
-                <div class="price-tag">
-                    
-                    <div class="price-subtitle">Todas las métricas</div>
-                </div>
-                <div class="roi-section">
-                    <div class="roi-title">💰 ROI Estimado:</div>
-                    <div class="roi-item">• Decisiones 3x más precisas</div>
-                    <div class="roi-item">• Identificación rápida de problemas</div>
-                    <div class="roi-item">• Optimización continua automática</div>
+            <!-- Paso 3: Gestión y conversión -->
+            <div class="flow-step">
+                <h2>3️⃣ Gestión y conversión (Cierre de ventas)</h2>
+                <p>Convierte prospectos en clientes y optimiza el proceso comercial.</p>
+                <div class="cards-container">
+                    <div class="automations-grid">
+                        <!-- Client Management CRM -->
+                        <div class="automation-card">
+                            <div class="card-header">
+                                <div class="card-icon">👥</div>
+                                <div class="card-title">Smart Client Management CRM</div>
+                            </div>
+                            <div class="card-description">
+                                Integración con CRM de manera inteligente. Organiza y automatiza todo el recorrido de tus clientes: desde el primer contacto hasta la facturación. Mantén el control de cada oportunidad, haz seguimiento sin olvidos y cierra ventas más rápido. Ideal para centralizar toda la información y optimizar tu flujo comercial.
+                            </div>
+                            <ul class="features-list">
+                                <li>Calificación automática de leads</li>
+                                <li>Seguimiento de pipeline de ventas</li>
+                                <li>Recordatorios de follow-up</li>
+                                <li>Historial completo de interacciones</li>
+                                <li>Automatización de propuestas</li>
+                                <li>Dashboard de métricas</li>
+                            </ul>
+                            <div class="price-tag">
+                                <div class="price-subtitle">Clientes ilimitados</div>
+                            </div>
+                            <div class="roi-section">
+                                <div class="roi-title">💰 ROI Estimado:</div>
+                                <div class="roi-item">• +25% tasa de cierre de ventas</div>
+                                <div class="roi-item">• 0% clientes olvidados</div>
+                                <div class="roi-item">• Proceso de ventas 3x más rápido</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Additional Automations -->
+        <div class="additional-cards">
+            <h2 class="section-title">Automatizaciones Adicionales</h2>
+            <div class="automations-grid">
+                <!-- Social Media Audit Automation -->
+                <div class="automation-card">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <div class="card-title">Social Media Audit Automation</div>
+                    </div>
+                    <div class="card-description">
+                        Genera reportes completos de auditoría de redes sociales en minutos. Análisis profesional automatizado para ti y/o tus clientes.
+                    </div>
+                    <ul class="features-list">
+                        <li>Análisis automático de engagement rates</li>
+                        <li>Mejores horarios de publicación</li>
+                        <li>Comparativa con competencia</li>
+                        <li>Reporte en PDF profesional</li>
+                        <li>Métricas de crecimiento</li>
+                        <li>Recomendaciones automáticas</li>
+                    </ul>
+                    <div class="price-tag">
+                        <div class="price-subtitle">Info ilimitada</div>
+                    </div>
+                    <div class="roi-section">
+                        <div class="roi-title">💰 ROI Estimado:</div>
+                        <div class="roi-item">• De 4 horas → 30 minutos por auditoría</div>
+                        <div class="roi-item">• Capacidad para 10x más clientes</div>
+                        <div class="roi-item">• Reportes más precisos y profesionales</div>
+                    </div>
+                </div>
 
-        
+                <!-- Content Research & Ideas -->
+                <div class="automation-card">
+                    <div class="card-header">
+                        <div class="card-icon">💡</div>
+                        <div class="card-title">Content Research & Ideas Generator</div>
+                    </div>
+                    <div class="card-description">
+                        Investigación automática de tendencias y generación de ideas para que la inspiración nunca se apague. Analiza tu nicho, detecta oportunidades virales y entrega ideas creativas sin parar.
+                    </div>
+                    <ul class="features-list">
+                        <li>Scraping de tendencias por nicho específico</li>
+                        <li>Análisis de contenido viral en tiempo real</li>
+                        <li>Banco de hashtags automático actualizado</li>
+                        <li>Sugerencias personalizadas por audiencia</li>
+                        <li>Calendario de contenido inteligente</li>
+                        <li>Alertas de oportunidades trending</li>
+                    </ul>
+                    <div class="price-tag">
+                        <div class="price-subtitle">Ideas ilimitadas</div>
+                    </div>
+                    <div class="roi-section">
+                        <div class="roi-title">💰 ROI Estimado:</div>
+                        <div class="roi-item">• 2-3 horas ahorradas diarias en research</div>
+                        <div class="roi-item">• Contenido más relevante y viral</div>
+                        <div class="roi-item">• Consistencia en publicaciones</div>
+                        <div class="roi-item">• Mayor engagement por trending content</div>
+                    </div>
+                </div>
+
+                <!-- Competitor Monitoring -->
+                <div class="automation-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔍</div>
+                        <div class="card-title">Competitor Intelligence System</div>
+                    </div>
+                    <div class="card-description">
+                        Monitoreo automático de competencia 24/7. Rastrea estrategias, analiza resultados y te mantiene un paso adelante con insights y alertas en tiempo real.
+                    </div>
+                    <ul class="features-list">
+                        <li>Tracking automático de posts de competidores</li>
+                        <li>Análisis comparativo de engagement rates</li>
+                        <li>Alertas inmediatas de nuevas estrategias</li>
+                        <li>Reportes semanales con insights clave</li>
+                        <li>Identificación de oportunidades no exploradas</li>
+                        <li>Benchmarking automático de performance</li>
+                    </ul>
+                    <div class="price-tag">
+                        <div class="price-subtitle">Hasta 10 competidores</div>
+                    </div>
+                    <div class="roi-section">
+                        <div class="roi-title">💰 ROI Estimado:</div>
+                        <div class="roi-item">• Estrategias más competitivas y actuales</div>
+                        <div class="roi-item">• Identificación temprana de tendencias</div>
+                        <div class="roi-item">• Ventaja competitiva sostenible</div>
+                        <div class="roi-item">• Decisiones basadas en data competitiva</div>
+                    </div>
+                </div>
+
+                <!-- Analytics & Reporting -->
+                <div class="automation-card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <div class="card-title">Advanced Analytics Dashboard</div>
+                    </div>
+                    <div class="card-description">
+                        Dashboard centralizado con métricas clave de todas tus plataformas digitales. Sistema completo de analytics que unifica datos de Instagram, Facebook, TikTok, email marketing y más. Toma decisiones estratégicas basadas en datos reales y visualizaciones intuitivas.
+                    </div>
+                    <ul class="features-list">
+                        <li>Métricas unificadas de múltiples plataformas</li>
+                        <li>Reportes automáticos personalizables</li>
+                        <li>Alertas inteligentes de cambios críticos</li>
+                        <li>ROI tracking automatizado por campaña</li>
+                        <li>Predicciones de crecimiento con IA</li>
+                        <li>Visualizaciones interactivas avanzadas</li>
+                    </ul>
+                    <div class="price-tag">
+                        <div class="price-subtitle">Métricas ilimitadas</div>
+                    </div>
+                    <div class="roi-section">
+                        <div class="roi-title">💰 ROI Estimado:</div>
+                        <div class="roi-item">• Decisiones 3x más precisas y rápidas</div>
+                        <div class="roi-item">• Identificación inmediata de problemas</div>
+                        <div class="roi-item">• Optimización continua automatizada</div>
+                        <div class="roi-item">• Ahorro de 10+ horas semanales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Add smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
@@ -483,20 +714,34 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
                 }
             });
         }, observerOptions);
 
-        // Observe all cards
+        // Observe all cards and flow steps
+        document.querySelectorAll('.automation-card, .flow-step').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            observer.observe(element);
+        });
+
+        // Add hover effects for cards
         document.querySelectorAll('.automation-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
         });
     </script>
 </body>
 </html>
-
-
- 
