@@ -412,6 +412,151 @@
                 margin: 40px 10px;
             }
         }
+    
+        /* Pricing Section */
+        .pricing-section {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-section .section-title {
+            margin-bottom: 30px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            border: 1px solid #E5E7EB;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .price-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+        }
+
+        .price-card .item-title {
+            font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .price-card .item-price {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 800;
+            color: #059669;
+        }
+
+        .pricing-note {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #F9FAFB;
+            background: rgba(16,185,129,0.2);
+            border: 1px solid rgba(16,185,129,0.35);
+            padding: 14px 16px;
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+        }
+
+        /* ===== Pricing Section ===== */
+.pricing-section {
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.pricing-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.pricing-container .section-title {
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #ffffff; /* cambia si usas dark */
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.price-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.10);
+}
+
+.price-card .item-title {
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: #111827;
+}
+
+.price-card .item-price {
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  color: #059669; /* verde precio */
+}
+
+.pricing-note {
+  display: block;
+  margin-top: 18px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #ffffff;
+  background: rgba(93, 113, 106, 0.15);
+  border: 3px solid rgba(98, 154, 135, 0.3);
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+/* Opcional: ajuste márgenes en móviles */
+@media (max-width: 480px) {
+  .pricing-section { margin-top: 48px; margin-bottom: 48px; }
+}
+
+
+        @media (max-width: 480px) {
+            .pricing-section {
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -471,7 +616,7 @@
                                 <li>Derivación a WhatsApp/email</li>
                                 <li>Horarios de respuesta configurables</li>
                                 <li>Templates por tipo de consulta</li>
-                                <li>Analytics de conversación</li>
+                                <!-- <li>Analytics de conversación</li> -->
                             </ul>
                             <div class="price-tag">
                                 <div class="price-subtitle">Respuestas 24/7</div>
@@ -507,7 +652,7 @@
                             <ul class="features-list">
                                 <li>Secuencias de nurturing automáticas</li>
                                 <li>Segmentación inteligente</li>
-                                <li>A/B testing automático</li>
+                                <!-- <li>A/B testing automático</li> -->
                                 <li>Personalización dinámica</li>
                                 <li>Métricas avanzadas</li>
                                 <li>Re-engagement campaigns</li>
@@ -582,10 +727,10 @@
                     <ul class="features-list">
                         <li>Análisis automático de engagement rates</li>
                         <li>Mejores horarios de publicación</li>
-                        <li>Comparativa con competencia</li>
-                        <li>Reporte en PDF profesional</li>
+                        <!-- <li>Comparativa con competencia</li> -->
+                        <!-- <li>Reporte en PDF profesional</li> -->
                         <li>Métricas de crecimiento</li>
-                        <li>Recomendaciones automáticas</li>
+                        <!-- <li>Recomendaciones automáticas</li> -->
                     </ul>
                     <div class="price-tag">
                         <div class="price-subtitle">Info ilimitada</div>
@@ -608,10 +753,8 @@
                         Investigación automática de tendencias y generación de ideas para que la inspiración nunca se apague. Analiza tu nicho, detecta oportunidades virales y entrega ideas creativas sin parar.
                     </div>
                     <ul class="features-list">
-                        <li>Scraping de tendencias por nicho específico</li>
-                        <li>Análisis de contenido viral en tiempo real</li>
+                        <!-- <li>Scraping de tendencias por nicho específico</li> -->
                         <li>Banco de hashtags automático actualizado</li>
-                        <li>Sugerencias personalizadas por audiencia</li>
                         <li>Calendario de contenido inteligente</li>
                         <li>Alertas de oportunidades trending</li>
                     </ul>
@@ -637,11 +780,11 @@
                         Monitoreo automático de competencia 24/7. Rastrea estrategias, analiza resultados y te mantiene un paso adelante con insights y alertas en tiempo real.
                     </div>
                     <ul class="features-list">
-                        <li>Tracking automático de posts de competidores</li>
+                        <!-- <li>Tracking automático de posts de competidores</li> -->
                         <li>Análisis comparativo de engagement rates</li>
-                        <li>Alertas inmediatas de nuevas estrategias</li>
+                        <!-- <li>Alertas inmediatas de nuevas estrategias</li> -->
                         <li>Reportes semanales con insights clave</li>
-                        <li>Identificación de oportunidades no exploradas</li>
+                        <!-- <li>Identificación de oportunidades no exploradas</li> -->
                         <li>Benchmarking automático de performance</li>
                     </ul>
                     <div class="price-tag">
@@ -657,22 +800,22 @@
                 </div>
 
                 <!-- Analytics & Reporting -->
-                <div class="automation-card">
+                <!-- <div class="automation-card">
                     <div class="card-header">
                         <div class="card-icon">📈</div>
                         <div class="card-title">Advanced Analytics Dashboard</div>
                     </div>
                     <div class="card-description">
-                        Dashboard centralizado con métricas clave de todas tus plataformas digitales. Sistema completo de analytics que unifica datos de Instagram, Facebook, TikTok, email marketing y más. Toma decisiones estratégicas basadas en datos reales y visualizaciones intuitivas.
+                        Dashboard centralizado con métricas clave de todas tus plataformas digitales. Sistema completo de analytics que unifica datos de Instagram, Facebook, email marketing y más. Toma decisiones estratégicas basadas en datos reales y visualizaciones intuitivas.
                     </div>
                     <ul class="features-list">
                         <li>Métricas unificadas de múltiples plataformas</li>
                         <li>Reportes automáticos personalizables</li>
                         <li>Alertas inteligentes de cambios críticos</li>
                         <li>ROI tracking automatizado por campaña</li>
-                        <li>Predicciones de crecimiento con IA</li>
-                        <li>Visualizaciones interactivas avanzadas</li>
-                    </ul>
+                        <!-- <li>Predicciones de crecimiento con IA</li> -->
+                        <!-- <li>Visualizaciones interactivas avanzadas</li> -->
+                    <!-- </ul>
                     <div class="price-tag">
                         <div class="price-subtitle">Métricas ilimitadas</div>
                     </div>
@@ -683,10 +826,45 @@
                         <div class="roi-item">• Optimización continua automatizada</div>
                         <div class="roi-item">• Ahorro de 10+ horas semanales</div>
                     </div>
-                </div>
+                </div> --> 
             </div>
         </div>
     </div>
+
+    <!-- Pricing -->
+<section id="pricing" class="pricing-section">
+    <div class="pricing-container">
+      <h2 class="section-title">Pricing</h2>
+  
+      <div class="pricing-grid">
+        <article class="price-card">
+          <div class="item-title">🚀 Embudo completo (captura + nutrición + integración con CRM de manera inteligente)</div>
+          <div class="item-price">450.000 COP/mes</div>
+        </article>
+  
+        <article class="price-card">
+          <div class="item-title">📊 Social Media Audit Automation</div>
+          <div class="item-price">$200.000 COP/mes</div>
+        </article>
+
+        <article class="price-card">
+          <div class="item-title">💡 Content Research &amp; Ideas Generator</div>
+          <div class="item-price">$180.000 COP/mes</div>
+        </article>
+  
+        <article class="price-card">
+          <div class="item-title">🔎 Competitor Intelligence System</div>
+          <div class="item-price">+$160.000 COP/mes</div>
+        </article>
+      </div>
+  
+      <span class="pricing-note">
+        Nota: los metodos y formas de pago son flexibles, se puede pagar la mitad del valor en una quincena y la mitad en otra. 
+        También intercambio de servicios teniendo en cuenta costo/tiempo/beneficio
+      </span>
+    </div>
+  </section>
+  
 
     <script>
         // Add smooth scroll for anchor links
